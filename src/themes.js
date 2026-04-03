@@ -1,0 +1,118 @@
+export const THEMES = {
+  minimal: {
+    name: "Minimal / Editorial",
+    vars: {
+      "--bg": "#ffffff",
+      "--surface": "#f5f5f5",
+      "--text": "#111111",
+      "--text-muted": "#666666",
+      "--accent": "#111111",
+      "--accent-text": "#ffffff",
+      "--border": "#e0e0e0",
+      "--radius": "4px",
+      "--font-heading": "'Inter', sans-serif",
+      "--font-body": "'Inter', sans-serif",
+      "--shadow": "0 1px 3px rgba(0,0,0,0.1)",
+      "--btn-style": "solid",
+      "--spacing": "1rem",
+    },
+  },
+  neobrutал: {
+    name: "Neo-Brutal",
+    vars: {
+      "--bg": "#f5f0e8",
+      "--surface": "#ffffff",
+      "--text": "#000000",
+      "--text-muted": "#333333",
+      "--accent": "#ff6b35",
+      "--accent-text": "#000000",
+      "--border": "#000000",
+      "--radius": "0px",
+      "--font-heading": "'Space Grotesk', sans-serif",
+      "--font-body": "'Space Grotesk', sans-serif",
+      "--shadow": "4px 4px 0px #000000",
+      "--btn-style": "brutal",
+      "--spacing": "1.25rem",
+    },
+  },
+  neon: {
+    name: "Dark / Neon",
+    vars: {
+      "--bg": "#0a0a0f",
+      "--surface": "#12121a",
+      "--text": "#e0e0ff",
+      "--text-muted": "#8888aa",
+      "--accent": "#00ffcc",
+      "--accent-text": "#000000",
+      "--border": "#2a2a3a",
+      "--radius": "8px",
+      "--font-heading": "'Rajdhani', sans-serif",
+      "--font-body": "'Inter', sans-serif",
+      "--shadow": "0 0 20px rgba(0,255,204,0.3)",
+      "--btn-style": "glow",
+      "--spacing": "1rem",
+    },
+  },
+  pastel: {
+    name: "Pastel / Soft",
+    vars: {
+      "--bg": "#fdf6f0",
+      "--surface": "#ffffff",
+      "--text": "#3d2c2c",
+      "--text-muted": "#9e7e7e",
+      "--accent": "#f4a7b9",
+      "--accent-text": "#3d2c2c",
+      "--border": "#f0e0e0",
+      "--radius": "20px",
+      "--font-heading": "'Playfair Display', serif",
+      "--font-body": "'Lato', sans-serif",
+      "--shadow": "0 4px 20px rgba(244,167,185,0.2)",
+      "--btn-style": "soft",
+      "--spacing": "1.25rem",
+    },
+  },
+  luxury: {
+    name: "Luxury / Serif",
+    vars: {
+      "--bg": "#0d0d0d",
+      "--surface": "#1a1612",
+      "--text": "#e8d5b0",
+      "--text-muted": "#a08060",
+      "--accent": "#c9a84c",
+      "--accent-text": "#0d0d0d",
+      "--border": "#2a2420",
+      "--radius": "2px",
+      "--font-heading": "'Cormorant Garamond', serif",
+      "--font-body": "'EB Garamond', serif",
+      "--shadow": "0 4px 30px rgba(201,168,76,0.15)",
+      "--btn-style": "outline",
+      "--spacing": "1.5rem",
+    },
+  },
+  retro: {
+    name: "Retro / Pixel",
+    vars: {
+      "--bg": "#1a1a2e",
+      "--surface": "#16213e",
+      "--text": "#00ff41",
+      "--text-muted": "#00aa2b",
+      "--accent": "#ff00ff",
+      "--accent-text": "#ffffff",
+      "--border": "#00ff41",
+      "--radius": "0px",
+      "--font-heading": "'Press Start 2P', monospace",
+      "--font-body": "'Share Tech Mono', monospace",
+      "--shadow": "0 0 10px rgba(0,255,65,0.5)",
+      "--btn-style": "pixel",
+      "--spacing": "1rem",
+    },
+  },
+};
+
+export function applyTheme(themeKey, element = document.documentElement) {
+  const theme = THEMES[themeKey];
+  if (!theme) return;
+  Object.entries(theme.vars).forEach(([key, value]) => {
+    element.style.setProperty(key, value);
+  });
+}
