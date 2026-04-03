@@ -1,17 +1,94 @@
-# React + Vite
+# ⚡ VibeKit Studio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> "Generate a theme, build a mini-site, publish it."
 
-Currently, two official plugins are available:
+VibeKit Studio is a full-stack web app where users can create themed mini-sites, customize content with a live editor, and publish them to a public URL.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Live URL:** https://vibekitassignment.netlify.app/
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack
 
-## Expanding the ESLint configuration
+- **Frontend:** React + Vite
+- **Backend:** Netlify Functions (Node.js serverless)
+- **Database:** PostgreSQL (Neon)
+- **Auth:** JWT (httpOnly cookies) + bcrypt
+- **Deployment:** Netlify
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# vibekit
+## Features
+
+- 6 vibe themes (Minimal, Neo-Brutal, Dark/Neon, Pastel, Luxury, Retro)
+- Live page editor with Desktop/Tablet/Mobile preview toggle
+- Section reordering (Hero, Features, Gallery, Contact)
+- Publish/Unpublish toggle with unique slug generation
+- Page duplication
+- Public published pages with view count tracking
+- Contact form with DB persistence
+- Fully responsive (320px → 1280px+)
+
+---
+
+## Local Setup
+
+### 1. Clone the repo
+\```bash
+git clone https://github.com/AmanYadav101/vibekit
+cd vibekit
+\```
+
+### 2. Install dependencies
+\```bash
+npm install
+\```
+
+### 3. Create `.env` file in project root
+\```
+DATABASE_URL=your_neon_postgresql_connection_string
+JWT_SECRET=your_secret_key
+\```
+
+### 4. Run database migration
+\```bash
+npx netlify dev
+\```
+Then visit: `http://localhost:8888/.netlify/functions/migrate`
+
+### 5. Start development server
+\```bash
+npx netlify dev
+\```
+
+Visit `http://localhost:8888`
+
+---
+
+## Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `DATABASE_URL` | Neon PostgreSQL connection string |
+| `JWT_SECRET` | Secret key for signing JWT tokens |
+
+---
+
+## Test Credentials
+
+You can sign up directly on the app — no invite needed.
+Or use: `test@test.com` / `123456`
+
+---
+
+## Auth Approach
+
+JWT tokens are stored in **httpOnly cookies** (`SameSite=Lax`) so they are not accessible via JavaScript, protecting against XSS. Tokens expire in 7 days. All authenticated API routes verify the token server-side before any DB operation.
+
+---
+
+## Tradeoffs + What I'd Improve Next
+
+- **No forgot password flow** — would add email-based reset via Resend/SendGrid
+- **Image uploads** — currently gallery uses URLs; would add Cloudinary or S3 upload support
+- **No delete page** — would add soft delete with confirmation modal
+- **Slug editing** — currently auto-generated from title; would let users customize it
+- **Theme customizer** — would let users tweak individual colors/fonts beyond presets
